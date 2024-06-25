@@ -25,9 +25,17 @@ async def chat(request: Request):
     json = await request.json()
     print(json)
 
-    ############################
-    ### Add OpenAI code here ###
-    ############################
+    # Azure OpenAI setup
+    openai.api_base = "https://turbogptteam1.openai.azure.com/" # Add your endpoint here
+    openai.api_key = "8f66561a4421475b9f871d0ba695215e"  #os.getenv("AZURE_OAI_KEY")"" # Add your OpenAI API key here
+    deployment_id = "turbogpt" # Add your deployment ID here
+
+    # Azure AI Search setup
+    search_endpoint = "https://moviesearch.search.windows.net"; # Add your Azure AI Search endpoint here
+    search_key = os.getenv("AZURE_SEARCH_KEY"); # Add your Azure AI Search admin key here
+    search_index_name = "movies-team1-index"; # Add your Azure AI Search index name here
+    
+    
 
     return {"message": "Your message was: " + json["message"]}
 
